@@ -1,0 +1,220 @@
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>cd my/experience/as/a/developer</title><description>cd my/experience/as/a/developer</description><link>http://localhost:2368/</link><generator>Ghost 0.7</generator><lastBuildDate>Tue, 22 Dec 2015 02:04:51 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>Beats&amp;Sounds: never miss a show</title><description>Beats&amp;Sounds syncs with your Spotify account to give you a personalized list of concerts in your area based on the performer that you love.</description><link>http://localhost:2368/beats-sounds-never-miss-a-show/</link><guid isPermaLink="false">9b5642d3-fb1d-4007-8eac-9f0e67d174c4</guid><category>beats&amp;sounds</category><category>spotify</category><category>songkick</category><category>api</category><category>mysql</category><category>cron</category><category>music</category><category>database</category><dc:creator>Lorenzo De Nobili</dc:creator><pubDate>Thu, 19 Nov 2015 01:55:00 GMT</pubDate><media:content url="http://localhost:2368/content/images/2015/12/Screen-Shot-2015-11-17-at-21-07-26-2.png" medium="image"/><content:encoded>&lt;img src="http://localhost:2368/content/images/2015/12/Screen-Shot-2015-11-17-at-21-07-26-2.png" alt="Beats&amp;Sounds: never miss a show"&gt;&lt;p&gt;I'm really proud to present you our&lt;sup id="fnref:1"&gt;&lt;a href="http://localhost:2368/beats-sounds-never-miss-a-show/#fn:1" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt; new creation: &lt;strong&gt;Beats&amp;amp;Sounds&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h4 id="theidea"&gt;The idea&lt;/h4&gt;
+
+&lt;p&gt;Beats&amp;amp;Sounds &lt;strong&gt;syncs with your Spotify account to give you a personalized list of concerts in your area&lt;/strong&gt; (provided by &lt;strong&gt;SongKick&lt;/strong&gt;). It doesn't matter how you prefer to use Spotify - whether you choose to follow particular artists or put together playlists with all your favorite tracks - we'll find the performers you love and make sure you know when they're touring near you. &lt;br&gt;
+In addition to tracking your artists, we'll also show you concerts for similar artists that you might not have discovered yet. &lt;br&gt;
+You might just find your next favorite band.&lt;/p&gt;
+
+&lt;h4 id="thatscool"&gt;That's cool&lt;/h4&gt;
+
+&lt;p&gt;Yes, absolutely, it is!&lt;/p&gt;
+
+&lt;h4 id="mycontribution"&gt;My contribution&lt;/h4&gt;
+
+&lt;h6 id="theproblem"&gt;The problem&lt;/h6&gt;
+
+&lt;p&gt;When we started working at Beats&amp;amp;Sounds I immediately recognized a problem. SongKick in fact only allows you to get the list of &lt;strong&gt;all&lt;/strong&gt; the events planned for a specific area; that's not a problem if you are interested in what's going on in &lt;a href="https://en.wikipedia.org/wiki/King_City,_California"&gt;King City&lt;/a&gt;, but was quite an heavy job for bigger cities like San Francisco. And when i say &lt;em&gt;heavy job&lt;/em&gt; i really mean it: around 15 (fifteen) seconds to complete.&lt;/p&gt;
+
+&lt;p&gt;That was unacceptable, it was completely killing the user experience&lt;/p&gt;
+
+&lt;h4 id="thesolution"&gt;The solution&lt;/h4&gt;
+
+&lt;p&gt;The solution we came up with was (quite) simple but very efficient: creating a database acting like a cache, an intermediate storage level between the user and the SongKick API.&lt;/p&gt;
+
+&lt;h4 id="theimplementation"&gt;The implementation&lt;/h4&gt;
+
+&lt;p&gt;I hardly wanted to use &lt;strong&gt;MySQL&lt;/strong&gt; instead of MongoDB because our goal was &lt;strong&gt;performance&lt;/strong&gt;, not easy implementation.&lt;/p&gt;
+
+&lt;p&gt;When i was finally able to convince all my pairs about the need of MySQL we started analyzing the structure of the SongKick's JSON response, and after that I designed the db &lt;a href="https://github.com/chubbyoptometrist/Beats-and-Sounds/blob/master/server/db/schema.sql"&gt;schema&lt;/a&gt;. &lt;br&gt;
+Developing the db structure was a pretty long and tedious task, and we changed it's structure several time because we were not enough satisfied by it's behaviour and it's performance. But our hard job was payed: using our &lt;em&gt;database-cache system&lt;/em&gt; allowed us to &lt;strong&gt;improve the responsiveness of our website by an amazing 95%&lt;/strong&gt; !&lt;/p&gt;
+
+&lt;h6 id="themaintenance"&gt;The maintenance&lt;/h6&gt;
+
+&lt;p&gt;Using API is (should) easy because you are simply asking for data to someone else and usually the the data sent back by the API is immediately sent to the user. It's like "&lt;em&gt;send this data to the user&lt;/em&gt;". But what we did was completely different, our approach is "&lt;em&gt;send this data to me, i will rearrange it and then send it to the user&lt;/em&gt;". &lt;br&gt;
+The whole point is that now &lt;strong&gt;we are acting as intermediary&lt;/strong&gt;, so it's our duty deciding what data to request from SK, it's our duty deciding when we should do that and it's our duty sending to the user always the as newest as possible data.&lt;/p&gt;
+
+&lt;h6 id="meetstachanov"&gt;Meet Stachanov&lt;/h6&gt;
+
+&lt;p&gt;To handle all this work I created &lt;a href="https://en.wikipedia.org/wiki/Alexey_Stakhanov"&gt;Stachanov&lt;/a&gt;, a worker run using a &lt;strong&gt;Cron&lt;/strong&gt; task that it's constantly checking our database looking for old entries to delete, inconsistency to remove and new data to store.&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;I loved working on this project and I really hope i will find the time to keep working on it. &lt;br&gt;
+Some feature that i'd like to add are:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Ability to select a custom location&lt;/li&gt;
+&lt;li&gt;Instagram integration&lt;/li&gt;
+&lt;li&gt;Social sharing&lt;/li&gt;
+&lt;li&gt;Mobile app&lt;/li&gt;
+&lt;li&gt;Smart push notification&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The project is open source, so if like the idea, we would love to see somebody else working on it!&lt;/p&gt;
+
+&lt;p&gt;Thank you and enjoy your music!&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Oh, I also wrote an (i hope) amazing documentation about our database infrastructure that you can find &lt;a href="https://github.com/chubbyoptometrist/Beats-and-Sounds/blob/master/server/db/DB-DOCUMENTATION.md"&gt;&lt;strong&gt;here&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class="footnotes"&gt;&lt;ol&gt;&lt;li class="footnote" id="fn:1"&gt;&lt;p&gt;&lt;a href="https://github.com/gelsto"&gt;Laura Gelston&lt;/a&gt;, &lt;a href="https://github.com/jeobrien"&gt;Jessica O'Brien&lt;/a&gt;, &lt;a href="https://github.com/aboutabel"&gt;Abel Wang&lt;/a&gt; and of course &lt;a href="https://github.com/elledienne"&gt;myself&lt;/a&gt;. &lt;a href="http://localhost:2368/beats-sounds-never-miss-a-show/#fnref:1" title="return to article"&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;</content:encoded></item><item><title>Automate it with Grunt</title><description>Create your first Grunt file following this 'conjurers guide' to task automation using one of the most popular task runners!</description><link>http://localhost:2368/automate-it-with-grunt/</link><guid isPermaLink="false">938d4dcf-c43e-425b-814e-e4df11cc01a5</guid><category>grunt</category><category>automation</category><category>javascript</category><category>npm</category><category>good practices</category><dc:creator>Lorenzo De Nobili</dc:creator><pubDate>Wed, 18 Nov 2015 01:45:00 GMT</pubDate><media:content url="http://localhost:2368/content/images/2015/12/grunt_work-1-1.jpg" medium="image"/><content:encoded>&lt;img src="http://localhost:2368/content/images/2015/12/grunt_work-1-1.jpg" alt="Automate it with Grunt"&gt;&lt;p&gt;As a developer you will realize that there are a lot of operations that you are doing every day, several times a day. &lt;br&gt;
+You start cloning down your repo, than you have to install all the npm and bower dependencies, than you have maybe to &lt;br&gt;
+start your mysql database and sometimes you realize that you also have to rebuild it because you changed your schema. &lt;br&gt;
+But there is more to do. You have to start your node server, you have to add, commit, and push all time, you have to lint your file and, if you are doing your job properly, you should also run your tests.&lt;/p&gt;
+
+&lt;p&gt;A lot of things to be done, huh?&lt;/p&gt;
+
+&lt;p&gt;But i have two pieces of good news for you. &lt;br&gt;
+The first one is that you can do all these things using only one command (mostly), the second one is that i’ll show you how to do that in just a moment&lt;/p&gt;
+
+&lt;p&gt;Your new friend is &lt;strong&gt;Grunt&lt;/strong&gt;. &lt;br&gt;
+Grunt is a &lt;strong&gt;super simple, super customizable and super extendable task runner&lt;/strong&gt; that allows you to automate almost everything (nope, you still have to make coffe by yourself, sorry).&lt;/p&gt;
+
+&lt;p&gt;If you want to learn more about it see the &lt;a href="http://gruntjs.com/getting-started"&gt;official page&lt;/a&gt; otherwise follow me and build with me your first Grunt file&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;This post it's not meant to be a line by line code explanation, the idea is showing what you can do with Grunt and how cool and easy it is.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;In order to be able to run grunt task you need to install some stuff, but don't worry, it's super fast and easy, as easy as this two lines:  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;npm install -g grunt-cli  
+npm install grunt --save-dev  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Note that we are using &lt;code&gt;—save-dev&lt;/code&gt; to save our dependencies as a dev dependencies in our package.json file&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Now that our environment is ready we can start creating our first Gruntfile.js, that should have this structure:  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;module.exports = function(grunt) {  
+  grunt.initConfig({
+    pkg: grunt.file.readJSON('package.json’)
+
+    });
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As you can see is just a very simple node module! Cool, right?&lt;/p&gt;
+
+&lt;p&gt;But the cooler part has to come!&lt;/p&gt;
+
+&lt;p&gt;Let's say that you want to concatenate your files... Just add the following code to your &lt;code&gt;initConfig&lt;/code&gt; function!  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;concat: {  
+  'whatever/YourConcatenatedFile.js': [
+    'public/lib/underscore.js',
+    'public/lib/jquery.js'
+    // and so on..
+  ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And what if you want some minification?  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cssmin: {  
+  target: {
+    files: [{
+      expand: true,
+      cwd: 'public',
+      src: ['*.css', '!*.min.css'],
+      dest: 'public/dist',
+      ext: '.min.css'
+    }]
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Not impressed yet? Wouldn't be cool to be able to use git commands from grunt and automate some boring operations that usually you have to do all the time (especially when deploying)?  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gitadd: {  
+  task: {
+    options: {
+      verbose: true,
+      all: true
+    }
+  }
+},
+gitcommit: {  
+  task: {
+    options: {
+      message: grunt.option('message')
+    }
+  }
+},
+gitpush: {  
+  task: {
+    options: {
+      verbose: true,
+      remote: 'yourRemote'
+    }
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now, before being able to run your super cool grunt file you have to install the npm module that we added one second ago. The good news is that is super easy!&lt;/p&gt;
+
+&lt;p&gt;Run:  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;npm install grunt-contrib-concat --save-dev  
+npm install grunt-contrib-cssmin --save-dev  
+npm install grunt-git --save-dev  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and then add this to your Gruntfile:  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;grunt.loadNpmTasks('grunt-contrib-concat');  
+grunt.loadNpmTasks('grunt-contrib-cssmin');  
+grunt.loadNpmTasks('grunt-git');  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Almost done! Now, everything is ready to go, you just have to register your task. This last step is absolutely trivial, but very powerful because allows you to combine all the module that you installed in several different ways, with different behaviours and purposes.&lt;/p&gt;
+
+&lt;p&gt;Let's see an example:  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;grunt.registerTask('git', [  
+  'gitadd',
+  'gitcommit',
+  'gitpush'
+]);
+
+grunt.registerTask('uglify, [  
+  'cssmin',
+  'concat'
+]);
+
+grunt.registerTask('build', function (n) {  
+  grunt.task.run([ 'uglify' ]);
+  if (grunt.option( 'prod' )) {
+    grunt.task.run([ 'git' ]);
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You see? Isn't awesome? &lt;br&gt;
+What we did is creating some tasks with a name, so when we type grunt git we execute all the modules called inside that task. But that's not all because you can also put tasks inside other tasks, like what we did in the last &lt;code&gt;registerTask&lt;/code&gt; function. &lt;br&gt;
+In this last example we introduced another cool feature: &lt;code&gt;grunt.option()&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;What grunt is doing is looking for the &lt;code&gt;-prod&lt;/code&gt; option in the grunt command. This means that if you launch your build task using &lt;code&gt;grunt build&lt;/code&gt;, only the uglify task will run, but if you run grunt build &lt;code&gt;grunt build -prod --message 'Your commit message'&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;And that's all! &lt;br&gt;
+Keep playing with Grunt, look at the &lt;a href="http://gruntjs.com/plugins"&gt;HUGE amount of modules&lt;/a&gt; than you can find out here and if you want to go more into details check the &lt;a href="http://gruntjs.com/configuring-tasks"&gt;official documentation&lt;/a&gt;.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;DISCLAIMER: Automating can cause dependency&lt;/p&gt;
+&lt;/blockquote&gt;</content:encoded></item><item><title>A new beginning</title><description>&lt;p&gt;I remember very well my first time using a computer, and I have my sister to thank that, when the new mysterious machine came home, she taught me how to browse the Internet, how to install end uninstall the softwares that i needed and obviously - i was just a&lt;/p&gt;</description><link>http://localhost:2368/a-new-beginning/</link><guid isPermaLink="false">65ebbd19-08ca-42de-91e2-9063f0ba2465</guid><category>hack reactor</category><category>experience</category><dc:creator>Lorenzo De Nobili</dc:creator><pubDate>Mon, 12 Oct 2015 00:36:00 GMT</pubDate><media:content url="http://localhost:2368/content/images/2015/12/blogbg-1-1.png" medium="image"/><content:encoded>&lt;img src="http://localhost:2368/content/images/2015/12/blogbg-1-1.png" alt="A new beginning"&gt;&lt;p&gt;I remember very well my first time using a computer, and I have my sister to thank that, when the new mysterious machine came home, she taught me how to browse the Internet, how to install end uninstall the softwares that i needed and obviously - i was just a boy - how to play video games.&lt;/p&gt;
+
+&lt;p&gt;That boy is now growth, many years have passed, more than ten, no doubt about it, and probably even more than fifteen, and now that boy is at the opposite side of the world trying to feel what it means being in the role of who makes possible all the marvellous things that we see on the screen of our devices, that we use all the time and that are by now an essential part - can we say inescapable? - of our lives.&lt;/p&gt;
+
+&lt;p&gt;I'm in San Francisco, the center of the tech world, to attend one of the most prestigious and demanding bootcamp in the world: &lt;strong&gt;Hack Reactor&lt;/strong&gt;. Twelve hours a day of coding - and in all truth the most of the time are more then 'just' twelve - a new topic every two days, daily lectures on a wide range of arguments: data structures, frameworks, algorithms, style and syntax best practices. All that happens in an amazing environment, surrounded by smart people, all motivated to push their limits every single day. &lt;br&gt;
+The school is electrifying and engaging, so finding the motivation is not hard, actually is the opposite, everything and everybody seems to say: you can do it, you can win every challenge, don't give up, trust yourself, push yourself everyday and show the best of you, because this part of you is the part that we love! &lt;br&gt;
+I never tried something like this before and is very difficult to describe, especially if the reader is not American and is accustomed to the unproductive, depressing and humiliating Italian university framework. To understand my experience you must take all the things that you had experimented in your lives, throw them in the trash, and come here to see with your own eyes. Is all of this expensive? Yes, it is, I can't deny it. Is it worth it? Definitely yes!&lt;/p&gt;
+
+&lt;p&gt;The idea beyond HR is very simple: take some aspiring software developers and, in three months, transmogrify them in Senior Developers, ready to enter the labor market with an enviable curriculum&lt;/p&gt;
+
+&lt;p&gt;I'm ready, I'm working hard and I'll keep working hard, I'm ready to commit all my energies and time to this bootcamp: &lt;strong&gt;it's my dream and I want to make it real&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Thus begins my experience at Hack Reactor!&lt;/p&gt;</content:encoded></item></channel></rss>
