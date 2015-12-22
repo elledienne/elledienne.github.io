@@ -1,8 +1,8 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>cd my/experience/as/a/developer</title><description>cd my/experience/as/a/developer</description><link>http://localhost:2368/</link><generator>Ghost 0.7</generator><lastBuildDate>Tue, 22 Dec 2015 05:59:48 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>I like the way you move it!</title><description>&lt;p&gt;If you are building a modern website or a mobile app &lt;strong&gt;you certainly need to animate some elements of your UI&lt;/strong&gt;. Actually, I want to be even more drastic, &lt;strong&gt;you must do it&lt;/strong&gt;.&lt;/p&gt;
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>cd my/experience/as/a/developer</title><description>cd my/experience/as/a/developer</description><link>http://localhost:2368/</link><generator>Ghost 0.7</generator><lastBuildDate>Tue, 22 Dec 2015 06:00:31 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>I like the way you move it!!!!!!!!!!!!!</title><description>&lt;p&gt;If you are building a modern website or a mobile app &lt;strong&gt;you certainly need to animate some elements of your UI&lt;/strong&gt;. Actually, I want to be even more drastic, &lt;strong&gt;you must do it&lt;/strong&gt;.&lt;/p&gt;
 
 &lt;h4 id="why"&gt;Why?&lt;/h4&gt;
 
-&lt;p&gt;Do you wonder why? The reason is very simple: you want to have some animations because&lt;/p&gt;</description><link>http://localhost:2368/animations-using-css/</link><guid isPermaLink="false">20d46dee-5a76-4b44-93a2-52b70ea11744</guid><category>css3</category><category>jquery</category><category>animations</category><category>ui</category><category>performance</category><dc:creator>Lorenzo De Nobili</dc:creator><pubDate>Tue, 22 Dec 2015 04:56:00 GMT</pubDate><media:content url="http://localhost:2368/content/images/2015/12/css3-1.png" medium="image"/><content:encoded>&lt;img src="http://localhost:2368/content/images/2015/12/css3-1.png" alt="I like the way you move it!"&gt;&lt;p&gt;If you are building a modern website or a mobile app &lt;strong&gt;you certainly need to animate some elements of your UI&lt;/strong&gt;. Actually, I want to be even more drastic, &lt;strong&gt;you must do it&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Do you wonder why? The reason is very simple: you want to have some animations because&lt;/p&gt;</description><link>http://localhost:2368/animations-using-css/</link><guid isPermaLink="false">20d46dee-5a76-4b44-93a2-52b70ea11744</guid><category>css3</category><category>jquery</category><category>animations</category><category>ui</category><category>performance</category><dc:creator>Lorenzo De Nobili</dc:creator><pubDate>Tue, 22 Dec 2015 04:56:00 GMT</pubDate><media:content url="http://localhost:2368/content/images/2015/12/css3-1.png" medium="image"/><content:encoded>&lt;img src="http://localhost:2368/content/images/2015/12/css3-1.png" alt="I like the way you move it!!!!!!!!!!!!!"&gt;&lt;p&gt;If you are building a modern website or a mobile app &lt;strong&gt;you certainly need to animate some elements of your UI&lt;/strong&gt;. Actually, I want to be even more drastic, &lt;strong&gt;you must do it&lt;/strong&gt;.&lt;/p&gt;
 
 &lt;h4 id="why"&gt;Why?&lt;/h4&gt;
 
@@ -27,11 +27,11 @@
 
 &lt;p&gt;But what is this method exactly doing? We can easily understand it inspecting an DOM element animated using jQuery.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src="http://i.giphy.com/3o8doWaTaENGNudwd2.gif" alt="I like the way you move it!"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://i.giphy.com/3o8doWaTaENGNudwd2.gif" alt="I like the way you move it!!!!!!!!!!!!!"&gt;&lt;/p&gt;
 
 &lt;p&gt;As you can see jQuery is simply changing the value of the element’s properties, that is very slow because every single change cause a browser repaint event (and other very bad and slow things), that is one of the most (probably the most) intense operations that the browser can perform&lt;/p&gt;
 
-&lt;p&gt;&lt;img src="http://localhost:2368/content/images/2015/12/Screen%20Shot%202015-12-21%20at%207.44.02%20PM.png" alt="I like the way you move it!"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://localhost:2368/content/images/2015/12/Screen%20Shot%202015-12-21%20at%207.44.02%20PM.png" alt="I like the way you move it!!!!!!!!!!!!!"&gt;&lt;/p&gt;
 
 &lt;h4 id="cssanimationstotherescue"&gt;CSS animations to the rescue!&lt;/h4&gt;
 
@@ -126,7 +126,7 @@ The GPU acceleration is enabled by default for only some properties, one of them
 
 &lt;p&gt;I hope that the next time you will choose the right tool for your animations. I’m &lt;strong&gt;not saying that jQuery &lt;code&gt;animate()&lt;/code&gt; is evil&lt;/strong&gt;, what I’m saying is that it &lt;em&gt;can be evil&lt;/em&gt; sometimes, especially if you have a lot of animations and, of course, especially if your website is mobile oriented (and it should!).&lt;/p&gt;
 
-&lt;p&gt;&lt;img src="http://i.giphy.com/uOHDhlUXtTNx6.gif" alt="I like the way you move it!"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://i.giphy.com/uOHDhlUXtTNx6.gif" alt="I like the way you move it!!!!!!!!!!!!!"&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;This is a GIF of me kicking away jQuery animate() and choosing CSS animations&lt;/p&gt;
