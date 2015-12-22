@@ -1,4 +1,4 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>cd my/experience/as/a/developer</title><description>cd my/experience/as/a/developer</description><link>http://localhost:2368/</link><generator>Ghost 0.7</generator><lastBuildDate>Tue, 22 Dec 2015 06:03:53 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>I like the way you move it!</title><description>&lt;p&gt;If you are building a modern website or a mobile app &lt;strong&gt;you certainly need to animate some elements of your UI&lt;/strong&gt;. Actually, I want to be even more drastic, &lt;strong&gt;you must do it&lt;/strong&gt;.&lt;/p&gt;
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>cd my/experience/as/a/developer</title><description>cd my/experience/as/a/developer</description><link>http://localhost:2368/</link><generator>Ghost 0.7</generator><lastBuildDate>Tue, 22 Dec 2015 06:11:59 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>I like the way you move it!</title><description>&lt;p&gt;If you are building a modern website or a mobile app &lt;strong&gt;you certainly need to animate some elements of your UI&lt;/strong&gt;. Actually, I want to be even more drastic, &lt;strong&gt;you must do it&lt;/strong&gt;.&lt;/p&gt;
 
 &lt;h4 id="why"&gt;Why?&lt;/h4&gt;
 
@@ -31,7 +31,7 @@
 
 &lt;p&gt;As you can see jQuery is simply changing the value of the element’s properties, that is very slow because every single change cause a browser repaint event (and other very bad and slow things), that is one of the most (probably the most) intense operations that the browser can perform&lt;/p&gt;
 
-&lt;p&gt;&lt;img src="http://localhost:2368/animations-using-css/../content/images/2015/12/Screen%20Shot%202015-12-21%20at%207.44.02%20PM.png" alt="I like the way you move it!"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://i.imgur.com/dyqMqgw.png" alt="I like the way you move it!"&gt;&lt;/p&gt;
 
 &lt;h4 id="cssanimationstotherescue"&gt;CSS animations to the rescue!&lt;/h4&gt;
 
@@ -57,7 +57,7 @@
 &lt;pre&gt;&lt;code&gt;@keyframes my-cool-animation {
   0% {
     bottom: 0;
-    left: 0
+    left: 0;
   }
   33% {
     bottom: 20px;
@@ -68,7 +68,7 @@
     left: 300px;
   }
   100% {
-    bottom: 320;
+    bottom: 320px;
     left: 320px;
   }
 }
